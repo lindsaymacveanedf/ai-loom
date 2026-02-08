@@ -1,0 +1,84 @@
+# Agent Protocol
+
+IF THE USERS PROMPT DOES NOT APPEAR TO CONTAIN ENOUGH INFORMATION TO COMPLETE THE TASK THEN DO NOT ATTEMPT TO MAKE A CHANGE, INSTEAD ASK THE USER QUESTIONS WHICH MIGHT ELICIT MORE INFORMATION.
+
+## Purpose
+This file serves as a portable, AI-readable profile for interfacing with codebases. It informs AI agents (e.g., Codex, Cursor, GPTs, Copilot, etc.) about preferred patterns, workflows, and principles. It acts as an overlay cognitive guide to enhance AI alignment.
+
+---
+
+## Architectural Preferences
+- **Primary Style**: Clean Architecture (Uncle Bob inspired) where applicable
+- **Layering**: Domain-first
+    - `Domain`, `Application`, `Infrastructure`, `Presentation`
+    - Avoid deeply nested abstractions unless justified
+
+<!-- CUSTOMIZE: Add your language and framework preferences -->
+<!-- Example:
+- **Preferred Languages**: TypeScript, Python, Go
+- **Frontends**: React, Next.js
+- **Backends**: Node.js, FastAPI
+-->
+
+---
+
+## Coding Guidelines
+- Comment **why**, not what — assume the code says *how*
+- Public classes and methods must have clear doc comments
+- Private/internal logic gets comments **only** if non-trivial or critical
+- Avoid magic numbers and stringly-typed code unless wrapped in enums/constants
+- Log meaningfully: logs are for *intent tracing*, not just errors
+
+---
+
+## AI Agent Instructions
+- Do not hallucinate architecture: ask if unclear
+- Suggest before rewriting unless in `infra` or `tests`
+- Be concise unless asked for verbosity
+- Prioritize **code clarity**, **testability**, and **scalability** over cleverness
+- When in doubt, draft in the simplest readable form, then optimize
+- If agent has access to tools, use `summarize`, `comment`, or `refactor` actions — not destructive edits unless explicitly told
+- **PR and repo links:** When referencing a pull request or GitHub URL, always format it as a clickable markdown link (e.g. `[PR #264](https://github.com/...)`) so the user can open it in one click.
+
+---
+
+## Development Workflow
+- TDD encouraged but not rigidly enforced
+- Use Git branches named by task number and purpose: `123-fix-auth-handler`
+- Prefer VS Code for development
+
+---
+
+## Integration & DevOps
+- CI/CD: GitHub Actions (preferred), or your configured CI system
+- Docker for containerization where applicable
+
+---
+
+## Testing Preferences
+- Unit tests: Yes, for business logic and domain services
+- Integration tests: When crossing service boundaries
+- UI tests: Light, only when high-value interactions exist
+- Manual QA: Final stage, after automated flows are green
+
+---
+
+## Personal Coding Habits
+- Control-click to navigate definitions — traceability matters
+- Prefer code that reads like a narrative
+- Avoid abstracted boilerplate unless it truly reduces complexity
+- Fix broken windows early (e.g., if something smells, refactor before it spreads)
+
+---
+
+## Agent Goals
+- Keep cognitive load low
+- Help trace flow and intent quickly
+- Make thoughtful suggestions that fit within the working style
+- Organize suggestions in terms of clarity, correctness, performance, and maintainability
+
+---
+
+## Notes
+- This file is portable — do not hardcode project-specific logic here
+- If AI agents can auto-load this profile in a session, merge it with project-local context instead of overriding

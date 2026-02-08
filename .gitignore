@@ -1,0 +1,27 @@
+# Work directories (session-specific, not committed)
+work/*/
+
+# Keep the WORK-TO-PR.md file
+!work/WORK-TO-PR.md
+
+# Current directory (baseline repos for inspection)
+current/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.idea/
+.vscode/settings.json
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Node modules (if any utilities use them)
+node_modules/
