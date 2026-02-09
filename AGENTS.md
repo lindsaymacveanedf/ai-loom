@@ -36,6 +36,7 @@ When the user's message contains these keywords, follow the corresponding runboo
 
 | Keyword | Runbook | Action |
 |---------|---------|--------|
+| init | init.md | Gather project metadata and generate REPOS.md, TOOLS.md, CONTEXT.md, work/ structure |
 | start | CONTEXT.md | Read context, ask what to do |
 | design / plan | design.md | Interview → spec → optionally implement |
 | feature | feature.md | Immediately implement (no interview) |

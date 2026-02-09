@@ -34,6 +34,7 @@ All runbooks live in **`runbooks/`**.
 
 | Runbook | Purpose |
 |--------|---------|
+| [init.md](./runbooks/init.md) | **When user says "init":** Gather project metadata, configure repositories, tools, and architecture, then generate REPOS.md, TOOLS.md, CONTEXT.md, and work/ structure. |
 | [general-fix.md](./runbooks/general-fix.md) | Set up a work directory and clone only the repos you need (work dir → clone from REPOS.md → task work → back out). |
 | [clear-work-dir.md](./runbooks/clear-work-dir.md) | **When user wants to clear work dir:** Remove all run subdirs under `work/` and reset WORK-TO-PR.md to a clean table. |
 | [push-changes.md](./runbooks/push-changes.md) | **When user says "push":** per-repo convention — create PR or push direct to main based on repo settings. |

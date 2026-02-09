@@ -4,13 +4,20 @@ A framework for coordinating **multiple AI agents** across multi-repo developmen
 
 ## Getting Started
 
-Run the init command to configure AI Loom for your project:
+To set up AI Loom for your project, tell an AI agent to `start init`. The agent will follow [runbooks/init.md](./runbooks/init.md) to:
 
-```bash
-./init.sh
+- Gather your project metadata (name, repos, tools, architecture)
+- Generate REPOS.md, TOOLS.md, and CONTEXT.md
+- Set up the work directory structure
+
+Example:
+
+```
+You: start init
+Copilot: I'll set up AI Loom for your workspace...
 ```
 
-This will ask you about your repos, tools, and workflows, then generate the appropriate configuration files.
+Then follow the agent's prompts to configure your workspace.
 
 ## Chat keywords (AI agents)
 
@@ -18,6 +25,7 @@ Agents recognise these short commands:
 
 | Keyword | Action |
 |---------|--------|
+| **init** | Follow [runbooks/init.md](./runbooks/init.md): gather project metadata and generate configuration files for REPOS, TOOLS, and CONTEXT. |
 | **start** | Read [CONTEXT.md](./CONTEXT.md), then ask what you'd like to do. |
 | **design** / **plan** | Follow [runbooks/design.md](./runbooks/design.md): interview to produce a spec/plan for a feature or complex fix; optionally implement and open a PR. |
 | **feature** (e.g. **start my-repo feature add a flag**) | Follow [runbooks/feature.md](./runbooks/feature.md): immediately attempt to implement — parse repo and feature description, set up work dir and clone, create feature branch, implement, push/PR. No design interview first. |
