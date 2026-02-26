@@ -109,10 +109,21 @@ When the user's message contains these keywords, follow the corresponding runboo
 ## Coding Guidelines
 
 - Comment **why**, not what; avoid magic numbers and stringly-typed code
+- Public classes and methods should have clear doc comments; private logic gets comments only if non-trivial
+- Log meaningfully — logs are for intent tracing, not just errors
 - Prefer clarity, testability, and scalability over cleverness
+- Code should read like a narrative; fix broken windows early
 - Branch names: `<task#>-<purpose>` (e.g., `123-fix-auth-handler`)
 - No shared packages across components unless explicitly configured; duplication over premature abstraction
 - Components talk over HTTP; if ownership is unclear, prefer the API
+- Prefer Clean Architecture (domain-first layering) where applicable
+
+### Testing
+- TDD encouraged but not rigidly enforced
+- Unit tests for business logic and domain services
+- Integration tests when crossing service boundaries
+- UI tests only for high-value interactions
+- CI/CD: GitHub Actions; Docker for containerization where applicable
 
 ---
 
@@ -144,5 +155,4 @@ When the user's message contains these keywords, follow the corresponding runboo
 This workspace is designed to work with multiple AI tools:
 
 - **GitHub Copilot** — Uses `.github/copilot-instructions.md` (auto-loaded, points here)
-- **Cursor** — Uses `.cursorrules` for configuration
 - **Other agents** — Read this file directly
