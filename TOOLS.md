@@ -34,10 +34,15 @@ This file lists the CLI tools and commands agents can use when working in this w
 | Tool | Typical use |
 |------|-------------|
 | **Git** | Clone, branch, commit, push; runbooks assume `work/` and multi-repo workflows. |
-| **gh** (GitHub CLI) | PRs, workflows, API/GraphQL. |
 | **Node / npm** | JavaScript/TypeScript projects (install, build, test, lint). |
 | **AWS CLI** | Authentication via aws-toolbox.exe, managing AWS resources. |
 | **Terraform** | Infrastructure as code (used in cus-ebs-ai-env-init). |
+
+### NOT available
+
+| Tool | Alternative |
+|------|-------------|
+| **gh** (GitHub CLI) | **Not installed.** Use the GitHub REST/GraphQL API via `fetch_webpage` or the VS Code GitHub integration instead. For workflow runs: `https://api.github.com/repos/OWNER/REPO/actions/runs/RUN_ID/jobs`. |
 
 ---
 
