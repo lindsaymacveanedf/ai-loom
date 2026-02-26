@@ -69,6 +69,16 @@ For any fix that needs one or more of these repos cloned locally: create a run d
 
 ---
 
+## Upstream Modules (read-only reference, cloned to `edf-modules/`)
+
+These are shared EDF Terraform modules consumed by the project repos. Cloned locally for inspection — **do not modify** unless coordinating with the platform team.
+
+- **terraform-module-aws-github-action-control-plane-role**: git@github.com:edfenergy/terraform-module-aws-github-action-control-plane-role.git — Creates OIDC CI/CD roles in the control plane account (used in `cus-ebs-ai-env-init/terraform/control_plane.tf`)
+- **terraform-module-aws-github-action-role**: git@github.com:edfenergy/terraform-module-aws-github-action-role.git — Creates target-account GitHub Actions roles (read-only + read-write) with Allow `*` / Deny guardrails (used in `cus-ebs-ai-env-init/terraform/accounts.tf`)
+- **terraform-module-aws-github-oidc-role**: git@github.com:edfenergy/terraform-module-aws-github-oidc-role.git — Low-level OIDC role + trust policy; used by the control-plane-role module above
+
+---
+
 ## Clone examples
 
 ```bash
