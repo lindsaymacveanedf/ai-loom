@@ -16,7 +16,7 @@ Initialization collects project metadata and generates the source-of-truth confi
 
 ## Prerequisites
 
-- AI Loom workspace is initialized (has AGENTS.md, CONTEXT.md, REPOS.md, etc.)
+- AI Loom workspace is initialized (has CONTEXT.md, REPOS.md, etc.)
 - User is ready to configure the workspace
 
 ---

@@ -39,12 +39,11 @@ Agents recognise these short commands:
 
 ```
 ai-loom/
-├── CONTEXT.md          # Root context for agents - start here
-├── CLAUDE.md           # Claude-specific agent instructions
+├── CONTEXT.md          # Single source of truth for all agents - start here
 ├── REPOS.md            # Repository list, clone URLs, branch conventions
 ├── TOOLS.md            # CLI tools and commands
 ├── .cursorrules        # Cursor IDE agent configuration
-├── .github/copilot-instructions.md  # GitHub Copilot instructions
+├── .github/copilot-instructions.md  # GitHub Copilot bootstrap (points to CONTEXT.md)
 ├── runbooks/           # Operational procedures for AI agents
 ├── docs/               # Project documentation
 ├── human-read-only/    # Read-only baseline repos (for human inspection — agents must NEVER edit)
