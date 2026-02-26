@@ -42,7 +42,18 @@ This file lists the CLI tools and commands agents can use when working in this w
 
 | Tool | Alternative |
 |------|-------------|
-| **gh** (GitHub CLI) | **Not installed.** Use the GitHub REST/GraphQL API via `fetch_webpage` or the VS Code GitHub integration instead. For workflow runs: `https://api.github.com/repos/OWNER/REPO/actions/runs/RUN_ID/jobs`. |
+| **gh** (GitHub CLI) | **Not installed.** Use the GitHub REST API via `curl` with `$GITHUB_TOKEN`. See notes below. |
+
+### GitHub API access
+
+- **PAT** is available as `$GITHUB_TOKEN` in the shell environment.
+- **curl on this machine** requires `--ssl-no-revoke` (Windows Schannel revocation check fails against GitHub).
+- **Pattern:**
+  ```bash
+  curl -s --ssl-no-revoke --max-time 15 \
+    -H "Authorization: token $GITHUB_TOKEN" \
+    "https://api.github.com/repos/OWNER/REPO/actions/runs/RUN_ID/jobs"
+  ```
 
 ---
 
