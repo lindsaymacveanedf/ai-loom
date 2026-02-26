@@ -41,3 +41,7 @@ When helping with tasks, reference these files for context:
 - Do not hallucinate architecture — ask if unclear
 - Suggest before rewriting unless in tests or infrastructure
 - Prioritize code clarity and maintainability
+- Do not create scripts without asking first — prefer running commands directly for one-time tasks
+- Do not create new runbooks without confirming they'll be reused
+- When making changes to meta code (anything outside `work/`), stage, commit, and push in the root repo
+- Do not add or maintain indexes of individual files in context docs — reference directories and let the agent discover files by searching

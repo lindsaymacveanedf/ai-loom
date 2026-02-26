@@ -65,14 +65,18 @@ When the user's message contains these keywords, follow the corresponding runboo
 - Reference source-of-truth docs (REPOS.md, TOOLS.md, CONTEXT.md)
 - Use clickable markdown links for PRs: `[PR #N](url)`
 - Follow runbooks to completion
-- Send macOS notifications when waiting for user input
 
 ### Don't:
 - Hallucinate architecture — ask if unclear
 - Modify files in `human-read-only/`
 - Guess repository URLs or branch conventions
-- Create scripts without asking first
-- Create new runbooks without confirming they'll be reused
+- Create scripts without asking first — prefer running commands directly over generating scripts for one-time tasks
+- Create new runbooks without confirming they'll be reused — ask whether it is a repeatable procedure or a one-off fix first
+
+### Always-apply rules:
+- **Commit and push meta code:** When making changes to meta code (anything outside `work/` — runbooks, CONTEXT.md, REPOS.md, README.md, root docs), stage and commit in the root repo (this workspace), then push to origin. Do not commit or push anything under `work/`.
+- **No file indexes in context docs:** Do not add or maintain indexes of individual files in context docs (CONTEXT.md, AGENTS.md). Reference directories (e.g. `runbooks/`, `docs/`) and note what kind of content lives there. The agent discovers specific files by searching.
+- **Clickable PR links:** When referencing a pull request or any GitHub URL, always format as a clickable markdown link: `[PR #142](https://github.com/ORG/REPO/pull/142)`. Never paste bare URLs.
 
 ---
 
@@ -80,9 +84,8 @@ When the user's message contains these keywords, follow the corresponding runboo
 
 This workspace is designed to work with multiple AI tools:
 
-- **Claude Code** — Uses CLAUDE.md for instructions
-- **Cursor** — Uses .cursorrules for configuration
 - **GitHub Copilot** — Uses .github/copilot-instructions.md
+- **Cursor** — Uses .cursorrules for configuration
 - **Other agents** — Read CONTEXT.md and AGENTS.md
 
 All these files share the same core principles and guidelines.
