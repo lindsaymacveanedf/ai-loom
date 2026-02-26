@@ -47,7 +47,7 @@ ai-loom/
 ├── .github/copilot-instructions.md  # GitHub Copilot instructions
 ├── runbooks/           # Operational procedures for AI agents
 ├── docs/               # Project documentation
-├── current/            # Read-only baseline repos (for inspection)
+├── human-read-only/    # Read-only baseline repos (for human inspection — agents must NEVER edit)
 ├── work/               # Temporary working directories (per-session)
 └── utils/              # Utility scripts
 ```
@@ -56,10 +56,10 @@ ai-loom/
 
 ### The Work Directory Pattern
 
-- **Never touch `current/`** — read-only baseline repos for inspection
+- **Never touch `human-read-only/`** — read-only baseline repos for human inspection; agents must NEVER edit files there
 - **Always work in `work/`** — temporary per-session directories
 - **Pattern:** `work/<purpose>-<YYYY-MM-DD>/<repo>/`
-- **Cleanup:** When user says "end", the work dir is deleted and `current/` is refreshed
+- **Cleanup:** When user says "end", the work dir is deleted and `human-read-only/` is refreshed
 
 ### Runbooks as Procedures
 

@@ -1,17 +1,28 @@
-# Agent context – start here
 
-Read this file at the **start of a new chat**. It tells you where runbooks, references, and procedures live, and gives a terse overview of the project. The code is the truth; this file is the map.
+# CONTEXT.md
+
+## Architecture Overview
+
+This workspace is an AI Loom environment for coordinating AI agents across multi-repo development workflows for Customer EBS AI projects.
+
+### Repositories
+- **cus-ebs-ai-env-init:** Handles infrastructure/environment setup using Terraform. Bootstrap and main Terraform stages are separated.
+- **cus-ebs-ai-unbilled-api:** API layer for unbilled features.
+- **cus-ebs-ai-unbilled-backend:** Backend logic for unbilled features.
+- **cus-ebs-ai-unbilled-frontend:** React/TypeScript web application for unbilled features.
+
+### Guidelines
+- All work is performed in `work/` directories, never in `human-read-only/` (read-only baseline for human inspection — agents must NEVER edit files there).
+- Use runbooks in `runbooks/` for common workflows (feature, debug, design, etc.).
+- Branch naming: `<task#>-<purpose>` (e.g., `123-fix-auth-handler`).
+- Prefer clarity and maintainability over cleverness.
+
+### Runbooks
+- See `runbooks/` for step-by-step procedures for workflows.
+- Update `work/WORK-TO-PR.md` when opening PRs.
 
 ---
 
-## Overview (terse)
-
-<!-- CUSTOMIZE: Add a brief description of your project here -->
-This workspace coordinates work across **multiple repos**; the list, clone URLs, and branch conventions are in **[REPOS.md](./REPOS.md)**.
-
-**Default workflow:** `work/` exists. Create a run directory under `work/<purpose>-<date>/`, clone only the repos you need from REPOS.md, do the task **in that run dir**, then back out. See runbook **[general-fix](./runbooks/general-fix.md)**. **Never touch `current/`** — work only in `work/`. The `current/` directory is for the user to inspect the baseline codebase; agents must not modify it. When the user says **"end"**, the session work dir is deleted after refreshing **`current/`** (git pull only in each repo we worked on) so the user has an up-to-date baseline; `current/` is gitignored.
-
----
 
 ## When to read what
 
@@ -58,13 +69,33 @@ All runbooks live in **`runbooks/`**.
 
 ## Architecture (terse)
 
-<!-- CUSTOMIZE: Add your project architecture here -->
-<!-- Example:
-- **API:** AWS Lambda + API Gateway, Node.js, DynamoDB
-- **Admin:** React + TypeScript (Vite)
-- **Mobile:** React Native/Expo
-- **Infra:** Terraform, GitHub Actions
--->
+### Project Components
+
+- **cus-ebs-ai-env-init**: Environmental initialization and control plane setup
+  - Terraform for AWS infrastructure provisioning
+  - GitHub repository and team management
+  - Control plane AWS account configuration
+  
+- **cus-ebs-ai-unbilled-frontend**: Web application for unbilled
+  - React 19 + TypeScript
+  - Material-UI (MUI) component library
+  - Charts and data visualization (MUI X Charts)
+  - Date range pickers for data filtering
+  
+- **cus-ebs-ai-unbilled-backend**: Backend services (in development)
+  - Technology stack TBD
+  
+- **cus-ebs-ai-unbilled-api**: API layer (in development)
+  - Technology stack TBD
+
+### AWS Infrastructure
+
+**Accounts:**
+- **unbilled-primary** (248108944979) — Primary production environment
+- **unbilled-secondary** (450312424446) — Secondary/DR environment
+- **unbilled-sandbox** (382535610125) — Development and testing environment
+
+**Authentication:** Azure AD SSO via `aws-toolbox.exe`
 
 ---
 

@@ -154,8 +154,8 @@ Files generated/updated:
   - work/WORK-TO-PR.md
 
 Next steps:
-  1. Clone baseline repos into current/:
-     cd current/
+  1. Clone baseline repos into human-read-only/:
+     cd human-read-only/
      git clone https://github.com/[GITHUB_ORG]/[repo1].git
      git clone https://github.com/[GITHUB_ORG]/[repo2].git
      ...

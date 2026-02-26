@@ -6,10 +6,10 @@ This runbook describes the standard way to set up a **work directory** and clone
 
 ---
 
-## Work dir vs current/ — do not touch current/
+## Work dir vs human-read-only/ — do not touch human-read-only/
 
 - **Work only in `work/`.** Create a run directory under `work/<purpose>-<date>/`, clone repos there, and do all edits and task work in that run dir. All agent work happens under `work/`.
-- **Never touch `current/`.** The `current/` directory is for the user to inspect the baseline codebase. Agents must **not** create, edit, or modify anything in `current/`. The only exception is when the user says **"end"**: then the agent updates `current/` by running `git pull` in each `current/<repo>` that was worked on, so the user has an up-to-date baseline. No other changes in `current/` are allowed.
+- **Never touch `human-read-only/`.** The `human-read-only/` directory is for the user to inspect the baseline codebase. Agents must **not** create, edit, or modify anything in `human-read-only/`. The only exception is when the user says **"end"**: then the agent updates `human-read-only/` by running `git pull` in each `human-read-only/<repo>` that was worked on, so the user has an up-to-date baseline. No other changes in `human-read-only/` are allowed.
 
 ---
 
@@ -18,7 +18,7 @@ This runbook describes the standard way to set up a **work directory** and clone
 1. Create a **run directory** under `work/` named by purpose and date (e.g. `work/fix-auth-2026-02-03`).
 2. Look up **REPOS.md** to see which repos exist and their clone URLs.
 3. Clone **only the repos needed** for this fix into the run directory.
-4. Do the task-specific work (see task runbooks or your plan) **in the run dir** — never in `current/`.
+4. Do the task-specific work (see task runbooks or your plan) **in the run dir** — never in `human-read-only/`.
 5. When done, **back out**: delete the run directory and optionally remote feature branches.
 
 The `work/` tree is in `.gitignore`, so clones are never committed.
@@ -129,7 +129,7 @@ rm -rf work/my-fix-2026-02-03
 
 ## Notes for agents
 
-- **Never touch `current/`.** Work only in `work/<run-dir>/`. The `current/` directory is for the user to inspect the baseline; agents do not edit or create files there (except on **end**: then refresh `current/` with `git pull` only).
+- **Never touch `human-read-only/`.** Work only in `work/<run-dir>/`. The `human-read-only/` directory is for the user to inspect the baseline; agents do not edit or create files there (except on **end**: then refresh `human-read-only/` with `git pull` only).
 - **One run folder per batch:** Use a single `work/<purpose>-<date>/` for the whole run so paths stay consistent.
 - **Back out = this run only:** When deleting the run directory (Step 4), delete **only** the directory created for the current run. Never run `rm -rf work/*` or delete all children of `work/`.
 - **REPOS.md is the source of truth** for repo names, clone URLs, and branch conventions. Don't guess repo list or URLs.

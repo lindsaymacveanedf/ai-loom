@@ -16,8 +16,8 @@ When the user's message matches one of these keywords, read CONTEXT.md first, th
 | **feature** (e.g. "start my-repo feature add a flag") | Read and follow `runbooks/feature.md`. Immediately attempt to implement; parse repo and feature description, set up work dir and clone, create feature branch, implement, push/PR. No design interview first. |
 | **evaluate** (+ PR reference) | Read and follow `runbooks/evaluate.md`. |
 | **conflicts** (or "resolve conflicts" + PR reference) | Read and follow `runbooks/resolve-conflicts.md`. |
-| **clean** | Ask full clean vs PR-check; then delete work subdirs per choice, reset WORK-TO-PR.md if full clean. **Always finish by** ensuring `current/` has all repos from REPOS.md and each is up to date. Confirm briefly. |
-| **end** | Identify the work directory and which repo(s) we adjusted. Refresh `current/` for repos we worked on; review unfinished work; delete the run dir; update WORK-TO-PR.md. **Always finish by** ensuring `current/` has all repos from REPOS.md and each is up to date with remote main (or develop where configured). Confirm cleanup is done. |
+| **clean** | Ask full clean vs PR-check; then delete work subdirs per choice, reset WORK-TO-PR.md if full clean. **Always finish by** ensuring `human-read-only/` has all repos from REPOS.md and each is up to date. Confirm briefly. |
+| **end** | Identify the work directory and which repo(s) we adjusted. Refresh `human-read-only/` for repos we worked on; review unfinished work; delete the run dir; update WORK-TO-PR.md. **Always finish by** ensuring `human-read-only/` has all repos from REPOS.md and each is up to date with remote main (or develop where configured). Confirm cleanup is done. |
 
 ---
 

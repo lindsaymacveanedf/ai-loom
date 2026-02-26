@@ -4,8 +4,8 @@ work/*/
 # Keep the WORK-TO-PR.md file
 !work/WORK-TO-PR.md
 
-# Current directory (baseline repos for inspection)
-current/
+# Human-read-only directory (baseline repos for inspection — agents must NEVER edit)
+human-read-only/
 
 # OS files
 .DS_Store

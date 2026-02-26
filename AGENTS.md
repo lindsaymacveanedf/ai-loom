@@ -13,7 +13,7 @@ AI Loom is a meta-framework for coordinating AI agents across multi-repository p
 ## Core Principles
 
 ### 1. Work Directory Isolation
-- **Never touch `current/`** — read-only baseline for user inspection
+- **Never touch `human-read-only/`** — read-only baseline for user inspection; agents must NEVER create, edit, or delete files there
 - **Always work in `work/`** — create run directories for each task
 - Pattern: `work/<purpose>-<YYYY-MM-DD>/<repo>/`
 
@@ -43,7 +43,7 @@ When the user's message contains these keywords, follow the corresponding runboo
 | debug | debug.md | Handle pipeline/PR/endpoint/local debugging |
 | evaluate | evaluate.md | Assess PR risk, merge if low risk |
 | conflicts | resolve-conflicts.md | Merge main, resolve conflicts, push |
-| end | — | Delete work dir, refresh current/, cleanup |
+| end | — | Delete work dir, refresh human-read-only/, cleanup |
 | clean | clear-work-dir.md | Delete work dirs, reset WORK-TO-PR.md |
 
 ---
@@ -69,7 +69,7 @@ When the user's message contains these keywords, follow the corresponding runboo
 
 ### Don't:
 - Hallucinate architecture — ask if unclear
-- Modify files in `current/`
+- Modify files in `human-read-only/`
 - Guess repository URLs or branch conventions
 - Create scripts without asking first
 - Create new runbooks without confirming they'll be reused

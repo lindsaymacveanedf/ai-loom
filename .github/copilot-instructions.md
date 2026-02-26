@@ -17,7 +17,7 @@ When helping with tasks, reference these files for context:
 
 ## Work Directory Pattern
 
-- **Never modify files in `current/`** — this is the read-only baseline for inspection
+- **Never modify files in `human-read-only/`** — this is the read-only baseline for human inspection; agents must NEVER edit files there
 - **All work happens in `work/`** — create run directories like `work/<purpose>-<date>/`
 - Clone only the repos needed for each task
 

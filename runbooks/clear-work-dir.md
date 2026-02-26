@@ -35,9 +35,9 @@ Then follow either **Full clean** or **Check PRs first** below.
    **Convention:** When you open a PR for a trunk-style repo, rename that clone dir to `<repo>-<pr#>` (e.g. `backend-142`). Update this file when adding or removing run dirs.
    ```
 
-3. **Ensure current/ has all repos and is up to date:** For every repo listed in [REPOS.md](../REPOS.md), ensure `current/<repo>` exists — if not, clone it. Then in each `current/<repo>`: `git fetch origin`, then `git reset --hard origin/main` (or `origin/develop` where configured). This discards any local changes and leaves current/ matching the remote.
+3. **Ensure human-read-only/ has all repos and is up to date:** For every repo listed in [REPOS.md](../REPOS.md), ensure `human-read-only/<repo>` exists — if not, clone it. Then in each `human-read-only/<repo>`: `git fetch origin`, then `git reset --hard origin/main` (or `origin/develop` where configured). This discards any local changes and leaves human-read-only/ matching the remote.
 
-4. **Reply briefly:** Confirm that all work subdirs are removed, WORK-TO-PR.md has been reset, and current/ is up to date.
+4. **Reply briefly:** Confirm that all work subdirs are removed, WORK-TO-PR.md has been reset, and human-read-only/ is up to date.
 
 ---
 
@@ -70,5 +70,5 @@ For each run directory under `work/`, determine whether it is tied to an **open*
 
 - **Delete** only run dirs that have no open PR.
 - **Update work/WORK-TO-PR.md:** Remove table rows for run dirs that were deleted. **Add** rows for any run dirs that were **kept** and are not yet in the table.
-- **Ensure current/ has all repos and is up to date:** As in full clean step 3.
-- **Reply briefly:** Say what was deleted and what was left (if any), and confirm current/ is up to date.
+- **Ensure human-read-only/ has all repos and is up to date:** As in full clean step 3.
+- **Reply briefly:** Say what was deleted and what was left (if any), and confirm human-read-only/ is up to date.
