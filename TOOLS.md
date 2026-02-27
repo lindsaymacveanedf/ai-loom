@@ -31,10 +31,11 @@ This file lists the CLI tools and commands agents can use when working in this w
 
 ## Agent terminal rules
 
-- **Long output → pipe to file.** If a command may produce long output (AWS logs, large API responses, `terraform plan`, etc.), pipe to a temp file and read it with `read_file`, rather than dumping to the terminal. The terminal requires manual scrolling which blocks the agent.
+- **Long output → pipe to file in the work dir.** If a command may produce long output (AWS logs, large API responses, `terraform plan`, etc.), pipe to a temp file **inside the current work directory** and read it with `read_file`, rather than dumping to the terminal. The terminal requires manual scrolling which blocks the agent. **Never use `~/tmp`, `$HOME/tmp`, or `/tmp`** — keep everything under `work/` so cleanup is automatic when the work dir is deleted.
   ```bash
-  # Do this:
-  aws logs filter-log-events ... > /tmp/logs.txt 2>&1
+  # Do this (from inside your work/<purpose>-<date>/ dir):
+  aws logs filter-log-events ... > ./logs.txt 2>&1
+  curl -s ... -o ./api_response.json
   # Then inspect with read_file or grep, not by scrolling the terminal.
   ```
 - **Pagers:** Always disable pagers — use `git --no-pager`, `| cat`, or `AWS_PAGER=""`.

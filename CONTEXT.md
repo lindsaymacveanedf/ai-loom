@@ -150,6 +150,7 @@ When the user's message contains these keywords, follow the corresponding runboo
 - **Commit and push meta code:** When making changes to meta code (anything outside `work/` — runbooks, CONTEXT.md, REPOS.md, README.md, root docs), stage and commit in the root repo (this workspace), then push to origin. Do not commit or push anything under `work/`.
 - **No file indexes in context docs:** Do not add or maintain indexes of individual files in context docs. Reference directories (e.g. `runbooks/`, `docs/`) and note what kind of content lives there. The agent discovers specific files by searching.
 - **Clickable PR links:** When referencing a pull request or any GitHub URL, always format as a clickable markdown link: `[PR #142](https://github.com/ORG/REPO/pull/142)`. Never paste bare URLs.
+- **Temp files go in the work dir:** When piping command output to files (API responses, logs, plan output, etc.), always write them **inside the current `work/<purpose>-<date>/` directory** — never to `~/tmp`, `$HOME/tmp`, `/tmp`, or any location outside `work/`. This ensures all artefacts are cleaned up when the work directory is deleted.
 
 ---
 
