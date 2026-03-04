@@ -48,6 +48,7 @@ When the user's message contains these keywords, follow the corresponding runboo
 | clean | [clear-work-dir.md](./runbooks/clear-work-dir.md) | Delete work dirs, reset WORK-TO-PR.md |
 | push | [push-changes.md](./runbooks/push-changes.md) | Per-repo convention — create PR or push direct to main |
 | comments | [review-comments.md](./runbooks/review-comments.md) | Triage, fix, reply to, and resolve PR review comments |
+| manage | [manage.md](./runbooks/manage.md) | Shepherd a PR to all-green: iterate on CI, comments, deployment |
 
 **Expanded routing:**
 - **PR link, pipeline URL, endpoint failure, or "debug \<app\>":** [debug.md](./runbooks/debug.md) — resolve to workflow run, inspect with GitHub API, form theory and fix.
@@ -56,6 +57,7 @@ When the user's message contains these keywords, follow the corresponding runboo
 - **"feature \<repo\> \<description\>":** [feature.md](./runbooks/feature.md) — immediately implement, no design interview.
 - **"implement \<spec file\>":** [implement.md](./runbooks/implement.md) — read spec, clone, branch, implement in order, push, create PR with thorough description.
 - **"comments" with a PR reference or PR review URL:** [review-comments.md](./runbooks/review-comments.md) — fetch review comments, triage (accept/reject/defer), fix, reply to each thread, resolve.
+- **"manage" with a PR reference:** [manage.md](./runbooks/manage.md) — poll CI checks, review comments, and deployment status in a loop; fix failures via debug/comments runbooks; iterate until all green.
 
 ---
 
@@ -66,6 +68,7 @@ When the user's message contains these keywords, follow the corresponding runboo
 | [general-fix.md](./runbooks/general-fix.md) | Set up a work directory and clone only the repos you need. |
 | [implement.md](./runbooks/implement.md) | Implement a specification file end-to-end with thorough PR descriptions. |
 | [review-comments.md](./runbooks/review-comments.md) | Triage, fix, reply to, and resolve PR review comments. |
+| [manage.md](./runbooks/manage.md) | Shepherd a PR to all-green: iterate on CI, comments, deployment. |
 
 ---
 

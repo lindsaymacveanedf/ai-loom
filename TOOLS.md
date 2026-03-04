@@ -96,6 +96,38 @@ curl -s --ssl-no-revoke --max-time 15 \
   "https://api.github.com/repos/OWNER/REPO/pulls/NUMBER/comments"
 ```
 
+**Get combined commit status (legacy statuses):**
+```bash
+curl -s --ssl-no-revoke --max-time 15 \
+  -H "Authorization: token $GITHUB_TOKEN" \
+  -H "Accept: application/vnd.github+json" \
+  "https://api.github.com/repos/OWNER/REPO/commits/SHA/status"
+```
+
+**Get check runs for a commit (GitHub Actions checks):**
+```bash
+curl -s --ssl-no-revoke --max-time 15 \
+  -H "Authorization: token $GITHUB_TOKEN" \
+  -H "Accept: application/vnd.github+json" \
+  "https://api.github.com/repos/OWNER/REPO/commits/SHA/check-runs"
+```
+
+**Get deployments for a SHA:**
+```bash
+curl -s --ssl-no-revoke --max-time 15 \
+  -H "Authorization: token $GITHUB_TOKEN" \
+  -H "Accept: application/vnd.github+json" \
+  "https://api.github.com/repos/OWNER/REPO/deployments?sha=SHA&per_page=5"
+```
+
+**Get deployment statuses:**
+```bash
+curl -s --ssl-no-revoke --max-time 15 \
+  -H "Authorization: token $GITHUB_TOKEN" \
+  -H "Accept: application/vnd.github+json" \
+  "https://api.github.com/repos/OWNER/REPO/deployments/DEPLOY_ID/statuses"
+```
+
 > **Tip:** For long responses, pipe output to a file in your work dir and use `read_file` to inspect: `> ./pr_response.json`
 
 ---
