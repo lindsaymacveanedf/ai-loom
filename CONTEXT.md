@@ -39,6 +39,7 @@ When the user's message contains these keywords, follow the corresponding runboo
 | init | [init.md](./runbooks/init.md) | Gather project metadata and generate REPOS.md, TOOLS.md, CONTEXT.md, work/ structure |
 | start | This file | Read context, ask what to do |
 | design / plan | [design.md](./runbooks/design.md) | Interview → spec → optionally implement |
+| implement | [implement.md](./runbooks/implement.md) | Implement a specification file end-to-end |
 | feature | [feature.md](./runbooks/feature.md) | Immediately implement (no interview) |
 | debug | [debug.md](./runbooks/debug.md) | Handle pipeline/PR/endpoint/local debugging |
 | evaluate | [evaluate.md](./runbooks/evaluate.md) | Assess PR risk, merge if low risk |
@@ -53,6 +54,7 @@ When the user's message contains these keywords, follow the corresponding runboo
 - **"conflicts" with a PR reference:** [resolve-conflicts.md](./runbooks/resolve-conflicts.md) — set up work dir, clone, merge main into PR branch, resolve, commit, push.
 - **"evaluate" with a PR reference:** [evaluate.md](./runbooks/evaluate.md) — clone, assess risk; low risk → merge; high risk → explain why.
 - **"feature \<repo\> \<description\>":** [feature.md](./runbooks/feature.md) — immediately implement, no design interview.
+- **"implement \<spec file\>":** [implement.md](./runbooks/implement.md) — read spec, clone, branch, implement in order, push, create PR with thorough description.
 - **"comments" with a PR reference or PR review URL:** [review-comments.md](./runbooks/review-comments.md) — fetch review comments, triage (accept/reject/defer), fix, reply to each thread, resolve.
 
 ---
@@ -62,6 +64,7 @@ When the user's message contains these keywords, follow the corresponding runboo
 | Runbook | Purpose |
 |--------|---------|
 | [general-fix.md](./runbooks/general-fix.md) | Set up a work directory and clone only the repos you need. |
+| [implement.md](./runbooks/implement.md) | Implement a specification file end-to-end with thorough PR descriptions. |
 | [review-comments.md](./runbooks/review-comments.md) | Triage, fix, reply to, and resolve PR review comments. |
 
 ---
