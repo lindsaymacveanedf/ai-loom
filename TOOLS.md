@@ -140,7 +140,7 @@ terraform apply
 
 | Need | Tool / command |
 |------|----------------|
-| GitHub PRs / API | `gh pr view`, `gh pr create`, `gh api`, `gh api graphql` |
+| GitHub PRs / API | `curl --ssl-no-revoke -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/...` |
 | AWS account access | `export AWS_PROFILE=unbilled-sandbox` |
 | Frontend dev server | `cd cus-ebs-ai-unbilled-frontend && npm start` |
 | Terraform plan | `cd cus-ebs-ai-env-init/terraform && terraform plan` |
