@@ -26,7 +26,7 @@ Check **[REPOS.md](../REPOS.md)** for each repo's push workflow. Common patterns
 
 1. **Identify repos with changes** in the current work dir (e.g. `work/<purpose>-<date>/`): `git status` in each clone.
 2. **For each repo**, apply the convention from REPOS.md:
-   - **PR repos:** Create a descriptive branch (e.g. `fix-terraform-deploy-concurrency`), commit, push branch, run `gh pr create --repo <owner/repo> --base main` (or `--base develop` for develop-based repos). Optionally update work/WORK-TO-PR.md and rename clone to `<repo>-<pr#>` per [general-fix.md](./general-fix.md).
+   - **PR repos:** Create a descriptive branch (e.g. `fix-terraform-deploy-concurrency`), commit, push branch, create a PR via the GitHub API (see [TOOLS.md](../TOOLS.md) "Create a PR" recipe). Extract the PR number from the response. Optionally update work/WORK-TO-PR.md and rename clone to `<repo>-<pr#>` per [general-fix.md](./general-fix.md).
    - **Direct-to-main repos:** Commit on main (or merge feature branch into main), then `git push origin main`.
 3. **AI Loom workspace root** (this repo): If REPOS.md, CONTEXT.md, runbooks, or other root files changed, commit locally and push if a remote is configured.
 

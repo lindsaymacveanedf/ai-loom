@@ -50,19 +50,19 @@ For each run directory under `work/`, determine whether it is tied to an **open*
 - List every subdirectory under `work/` (each `work/<name>/`).
 - For each run dir, look at its **immediate children**: any directory that contains a **`.git`** is a full clone. For each such clone, record:
   - **Branch:** `git -C <path> rev-parse --abbrev-ref HEAD`
-  - **Remote:** `git -C <path> remote get-url origin` (normalize to `owner/repo` for `gh`).
+  - **Remote:** `git -C <path> remote get-url origin` (normalize to `owner/repo` for GitHub API calls).
 - Run dirs that contain only **partial copies** (subdirs named like a repo but **no** `.git`) or only files (e.g. `spec.md`) have no branch to check; use the **run dir name** to infer a PR number when possible.
 
 ### 2. Decide "open PR" per run dir
 
 - **If the run dir has at least one full clone (with `.git`):**
-  - For each clone on a **feature branch** (not `main` or `develop`): check if that branch has an **open** PR:
-    `gh pr list --repo <owner>/<repo> --head <branch> --state open`.
-    If the list is non-empty, this run dir is tied to an open PR → **keep**.
+  - For each clone on a **feature branch** (not `main` or `develop`): check if that branch has an **open** PR via the GitHub API:
+    `curl -s --ssl-no-revoke --max-time 15 -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/OWNER/REPO/pulls?head=OWNER:BRANCH&state=open"`.
+    If the response array is non-empty, this run dir is tied to an open PR → **keep**.
   - For each clone on **main** or **develop**: that clone is not tied to a feature PR; it does not by itself imply an open PR.
   - If **any** clone in the run dir is on a feature branch with an open PR → **keep** the run dir. If **all** clones are on main/develop or their feature branches have **no** open PR → **delete**.
 - **If the run dir has no full clone** (only partial copies or files):
-  - Infer PR from the run dir name (e.g. `pr-266`, `pr170`, `pr174`) and repo. Use `gh pr view <number> --repo <owner>/<repo> --json state`. If **OPEN** → **keep**; if **MERGED** or **CLOSED** → **delete**.
+  - Infer PR from the run dir name (e.g. `pr-266`, `pr170`, `pr174`) and repo. Use the GitHub API to check state: `curl -s --ssl-no-revoke --max-time 15 -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/OWNER/REPO/pulls/NUMBER"` → check `state` field. If **open** → **keep**; if **closed** → **delete**.
   - If the run dir name does not imply a PR number, treat as **no open PR** → **delete**.
 - **Repos that push straight to main**: run dirs that only contain such clones on `main` have no open PR → **delete**.
 

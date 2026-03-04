@@ -24,23 +24,23 @@ If unclear (none of the above), ask the user: a pipeline run link, a PR link, an
 
 ## 1. Mode: Pipeline run URL (or PR link resolved to a run)
 
-Use **gh** to inspect the run, then handle the failure type.
+Use the **GitHub API** (see [TOOLS.md](../TOOLS.md) for curl recipes) to inspect the run, then handle the failure type.
 
 ### 1.0 Resolve PR link to latest run
 
 When the user provides a **PR URL** or a **PR reference** (e.g. "debug PR 174"):
 
 1. Parse **owner**, **repo**, and **PR number** from the URL or reference.
-2. Get the PR's head branch: `gh pr view <N> --repo <OWNER>/<REPO> --json headRefName -q .headRefName`.
-3. Get the **latest workflow run** for that branch: `gh run list --repo <OWNER>/<REPO> --branch <headRefName> --limit 1`.
-4. From the list output, take the **run database id** or URL, then proceed to [1.1](#11-inspect-the-run-with-gh).
+2. Get the PR's head branch via the GitHub API: `curl ... "https://api.github.com/repos/OWNER/REPO/pulls/NUMBER"` → extract `head.ref` from the JSON response (see [TOOLS.md](../TOOLS.md) "View a PR" recipe).
+3. Get the **latest workflow run** for that branch via the GitHub API: `curl ... "https://api.github.com/repos/OWNER/REPO/actions/runs?branch=BRANCH&per_page=1"` (see [TOOLS.md](../TOOLS.md) "List workflow runs" recipe).
+4. From the response, take the **run id**, then proceed to [1.1](#11-inspect-the-run).
 
 Do **not** ask the user to paste a run URL; they mean "debug the last run for this PR."
 
-### 1.1 Inspect the run with gh
+### 1.1 Inspect the run
 
 - Parse the URL: `https://github.com/OWNER/REPO/actions/runs/RUN_ID` → owner, repo, run id.
-- Run: `gh run view RUN_ID --repo OWNER/REPO` (and optionally `--log` or `gh api repos/OWNER/REPO/actions/runs/RUN_ID/jobs`) to see status, conclusion, and job details.
+- Get run jobs via the GitHub API: `curl ... "https://api.github.com/repos/OWNER/REPO/actions/runs/RUN_ID/jobs"` (see [TOOLS.md](../TOOLS.md) "Get workflow run jobs" recipe). Pipe long output to a file in the work dir.
 - Identify the **failure type** from the run/job output or logs.
 
 ### 1.2 If it's a state lock (Terraform/dynamodb lock)

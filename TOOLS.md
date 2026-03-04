@@ -1,29 +1,6 @@
 # Tools available to agents
 
 This file lists the CLI tools and commands agents can use when working in this workspace. Use it when you need to run builds, deploy, authenticate, or work with a specific component.
-**Context:** For when to use which repo and workflow, see **[CONTEXT.md](./CONTEXT.md)**. For clone URLs and branch conventions, see **[REPOS.md](./REPOS.md)**.
-
----
-## CLI Tools & Common Commands
-
-### cus-ebs-ai-env-init
- - **Terraform:** Used for infrastructure provisioning
-	 - `make plan` (in `bootstrap/`): Plan Terraform changes
-	 - `make apply` (in `bootstrap/`): Apply Terraform changes
- - **Makefile:** Preconfigured commands for Terraform
-
-### cus-ebs-ai-unbilled-frontend
- - **npm/yarn:** JavaScript package management
-	 - `npm install`: Install dependencies
-	 - `npm start`: Start development server (uses `env-cmd` and `react-scripts`)
-	 - `npm run build`: Build production assets
- - **TypeScript:** Static type checking
-
-### General
- - **AWS CLI:** Required for platform admin access (env-init)
-# Tools available to agents
-
-This file lists the CLI tools and commands agents can use when working in this workspace. Use it when you need to run builds, deploy, authenticate, or work with a specific component.
 
 **Context:** For when to use which repo and workflow, see **[CONTEXT.md](./CONTEXT.md)**. For clone URLs and branch conventions, see **[REPOS.md](./REPOS.md)**.
 
@@ -58,16 +35,68 @@ This file lists the CLI tools and commands agents can use when working in this w
 |------|-------------|
 | **gh** (GitHub CLI) | **Not installed.** Use the GitHub REST API via `curl` with `$GITHUB_TOKEN`. See notes below. |
 
-### GitHub API access
+### GitHub API access (no `gh` CLI — use `curl`)
 
 - **PAT** is available as `$GITHUB_TOKEN` in the shell environment.
 - **curl on this machine** requires `--ssl-no-revoke` (Windows Schannel revocation check fails against GitHub).
-- **Pattern:**
-  ```bash
-  curl -s --ssl-no-revoke --max-time 15 \
-    -H "Authorization: token $GITHUB_TOKEN" \
-    "https://api.github.com/repos/OWNER/REPO/actions/runs/RUN_ID/jobs"
-  ```
+- **All runbooks that reference `gh` commands must use these `curl` equivalents instead.**
+
+#### Common recipes
+
+**Create a PR:**
+```bash
+curl -s --ssl-no-revoke --max-time 30 \
+  -X POST \
+  -H "Authorization: token $GITHUB_TOKEN" \
+  -H "Accept: application/vnd.github+json" \
+  "https://api.github.com/repos/OWNER/REPO/pulls" \
+  -d '{"title":"PR title","head":"branch-name","base":"main","body":"Description"}' \
+  | grep -E '"html_url"|"number"'
+```
+
+**View a PR (get state, head branch, etc.):**
+```bash
+curl -s --ssl-no-revoke --max-time 15 \
+  -H "Authorization: token $GITHUB_TOKEN" \
+  -H "Accept: application/vnd.github+json" \
+  "https://api.github.com/repos/OWNER/REPO/pulls/NUMBER"
+```
+
+**Merge a PR (squash):**
+```bash
+curl -s --ssl-no-revoke --max-time 30 \
+  -X PUT \
+  -H "Authorization: token $GITHUB_TOKEN" \
+  -H "Accept: application/vnd.github+json" \
+  "https://api.github.com/repos/OWNER/REPO/pulls/NUMBER/merge" \
+  -d '{"merge_method":"squash"}'
+```
+
+**List workflow runs for a branch:**
+```bash
+curl -s --ssl-no-revoke --max-time 15 \
+  -H "Authorization: token $GITHUB_TOKEN" \
+  -H "Accept: application/vnd.github+json" \
+  "https://api.github.com/repos/OWNER/REPO/actions/runs?branch=BRANCH&per_page=1"
+```
+
+**Get workflow run jobs:**
+```bash
+curl -s --ssl-no-revoke --max-time 15 \
+  -H "Authorization: token $GITHUB_TOKEN" \
+  -H "Accept: application/vnd.github+json" \
+  "https://api.github.com/repos/OWNER/REPO/actions/runs/RUN_ID/jobs"
+```
+
+**Get PR review comments:**
+```bash
+curl -s --ssl-no-revoke --max-time 15 \
+  -H "Authorization: token $GITHUB_TOKEN" \
+  -H "Accept: application/vnd.github+json" \
+  "https://api.github.com/repos/OWNER/REPO/pulls/NUMBER/comments"
+```
+
+> **Tip:** For long responses, pipe output to a file in your work dir and use `read_file` to inspect: `> ./pr_response.json`
 
 ---
 

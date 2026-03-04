@@ -11,7 +11,7 @@ Use this runbook when the user wants to **evaluate** a pull request: clone the r
 1. Get **PR number, repo, and PR branch** from the user's message or attached PR.
 2. Create a **run directory** under `work/` and **clone** the repo (e.g. `work/evaluate-pr150-2026-02-04`).
 3. **Assess the PR**: review changes, release notes, and how the repo uses affected code; decide **low risk** vs **high risk**.
-4. **If low risk:** Merge the PR (e.g. `gh pr merge`), then **delete** the run directory and update **work/WORK-TO-PR.md** if it was updated.
+4. **If low risk:** Merge the PR via the GitHub API (see [TOOLS.md](../TOOLS.md) "Merge a PR" recipe), then **delete** the run directory and update **work/WORK-TO-PR.md** if it was updated.
 5. **If high risk:** Explain why; do not merge. The user can clean the work directory with **end** or **clean** if desired.
 
 ---
@@ -20,7 +20,7 @@ Use this runbook when the user wants to **evaluate** a pull request: clone the r
 
 - **PR number** (e.g. 150).
 - **Repo** (e.g. backend). Infer from the PR URL or user message.
-- **PR branch name**. From the user's message, attached PR, or `gh pr view <number> --repo <owner/repo> --json headRefName`.
+- **PR branch name**. From the user's message, attached PR, or via the GitHub API (see [TOOLS.md](../TOOLS.md) "View a PR" recipe — extract `head.ref` from the response).
 
 If the user didn't specify a PR, ask which PR (number and repo) they mean.
 
@@ -57,10 +57,15 @@ Optional: checkout the PR branch locally if you need to run builds or tests.
 
 ## Step 4a: If low risk — merge and delete workspace
 
-1. Merge the PR (branch protection may require approval or admin override):
+1. Merge the PR via the GitHub API (branch protection may require approval or admin override). See [TOOLS.md](../TOOLS.md) "Merge a PR" recipe:
 
    ```bash
-   gh pr merge <PR_NUM> --repo <owner>/<repo> --squash
+   curl -s --ssl-no-revoke --max-time 30 \
+     -X PUT \
+     -H "Authorization: token $GITHUB_TOKEN" \
+     -H "Accept: application/vnd.github+json" \
+     "https://api.github.com/repos/OWNER/REPO/pulls/PR_NUM/merge" \
+     -d '{"merge_method":"squash"}'
    ```
 
    If blocked by policy, use `--admin` only if the user has admin rights; otherwise report that the PR is mergeable once requirements are met and provide the PR URL.
