@@ -25,3 +25,5 @@ Thumbs.db
 
 # Node modules (if any utilities use them)
 node_modules/
+edf/
+specifications/

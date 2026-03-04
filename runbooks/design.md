@@ -59,8 +59,8 @@ Produce a **short written plan** that you (and the user) can follow during imple
 
 **Where to save the spec:**
 
-- If you are **only designing** (no implementation yet): create a run directory for this session, e.g. `work/design-YYYY-MM-DD/`, and write the spec there, e.g. `work/design-YYYY-MM-DD/spec.md`. Tell the user the path.
-- If you are **designing then implementing in the same session**: use the same run dir you will create for implementation, e.g. `work/design-<short-name>-YYYY-MM-DD/`, and write `spec.md` in that directory. Then clone repos into that dir and implement.
+- **Working copy:** Write the spec in the run directory first — e.g. `work/design-<short-name>-YYYY-MM-DD/spec.md`. This is where you iterate with the user.
+- **Persistent copy:** Once the user confirms the spec is final, copy it to `specifications/<topic>-<YYYY-MM-DD>.md` (gitignored, survives work-dir cleanups). This is the durable record.
 
 Share the spec with the user (e.g. paste or point to the file) and confirm they're happy before moving to implementation.
 
@@ -89,5 +89,5 @@ If the user only wanted a plan, stop after Step 3. If they say **"end"** later, 
 |------|--------|
 | 1 | Read CONTEXT.md. |
 | 2 | Establish design subject: if prior conversation set the topic, use that; otherwise ask general question batch. Interview in rounds; after each round ask if anything else to add or if ready to move on; only proceed when user confirms coverage is complete. |
-| 3 | Write spec (problem, scope, components/order, decisions, acceptance criteria) in `work/design-.../spec.md`. Confirm with user. |
+| 3 | Write spec (problem, scope, components/order, decisions, acceptance criteria) in `work/design-.../spec.md`. Once confirmed, copy to `specifications/<topic>-<YYYY-MM-DD>.md`. |
 | 4 (optional) | General-fix: work dir + clone repos → implement per spec → push-changes (PR or direct per repo). |

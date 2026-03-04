@@ -74,6 +74,8 @@ When the user's message contains these keywords, follow the corresponding runboo
 | [TOOLS.md](./TOOLS.md) | CLI tools and common commands per component. |
 | [work/WORK-TO-PR.md](./work/WORK-TO-PR.md) | Map of run directories under `work/` to open/merged PRs. |
 | `docs/` | Developer guides (e.g. AWS CLI setup). |
+| `specifications/` | Design specs produced by the design runbook. Gitignored — persists locally across work-dir cleanups. Named `<topic>-<YYYY-MM-DD>.md`. |
+| `edf/` | Reference clones of other EDF AI repos (e.g. safety-ron). Gitignored — used for pattern comparison, not edited. |
 
 ---
 
