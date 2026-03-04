@@ -43,7 +43,7 @@ When the user's message contains these keywords, follow the corresponding runboo
 | debug | [debug.md](./runbooks/debug.md) | Handle pipeline/PR/endpoint/local debugging |
 | evaluate | [evaluate.md](./runbooks/evaluate.md) | Assess PR risk, merge if low risk |
 | conflicts | [resolve-conflicts.md](./runbooks/resolve-conflicts.md) | Merge main, resolve conflicts, push |
-| end | — | Delete work dirs, `git pull` all repos in `human-read-only/`, respond "you can close this chat" |
+| end | [end.md](./runbooks/end.md) | Check for loose ends, delete work dirs, pull `human-read-only/`, respond "you can close this chat" |
 | clean | [clear-work-dir.md](./runbooks/clear-work-dir.md) | Delete work dirs, reset WORK-TO-PR.md |
 | push | [push-changes.md](./runbooks/push-changes.md) | Per-repo convention — create PR or push direct to main |
 | comments | [review-comments.md](./runbooks/review-comments.md) | Triage, fix, reply to, and resolve PR review comments |
