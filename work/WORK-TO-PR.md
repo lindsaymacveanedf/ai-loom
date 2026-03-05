@@ -8,5 +8,6 @@ Maps each run directory under `work/` to its open/merged PRs for **trunk-style r
 | `debug-backend-pr13-2026-02-27` | `cus-ebs-ai-unbilled-backend` | [PR #13](https://github.com/edfenergy/cus-ebs-ai-unbilled-backend/pull/13) | Simplified to data lookup. Depends on env-init PR #18. |
 | _(deleted)_ `fix-lint-pr18-2026-02-27` | `cus-ebs-ai-env-init` | [PR #18](https://github.com/edfenergy/cus-ebs-ai-env-init/pull/18) | Fixed Checkov lint failures (CKV2_AWS_38, CKV2_AWS_39) — added skip comments for internal subdomain zones. |
 | `cloudfront-apigw-2026-03-04` | `cus-ebs-ai-unbilled-backend-14` | [PR #14](https://github.com/edfenergy/cus-ebs-ai-unbilled-backend/pull/14) | CloudFront + API Gateway routing per environment. ACM cert, APIGW REST API, EIS WAF module, custom domain. |
+| _(deleted)_ `manage-pr14-2026-03-04` | `cus-ebs-ai-unbilled-backend` | [PR #14](https://github.com/edfenergy/cus-ebs-ai-unbilled-backend/pull/14) | Managed PR #14 to all-green: fixed corrupted waf.tf, provider version, empty map handling, IAM naming, WAF removed block. Sandbox deployed successfully. |
 
 **Convention:** When you open a PR for a trunk-style repo, rename that clone dir to `<repo>-<pr#>` (e.g. `backend-142`). Update this file when adding or removing run dirs.
